@@ -84,7 +84,7 @@ class FeedForward(nn.Module):
     """A simple linear layer followed by a non-linearity."""
     def __init__(self, config: ModelConfig):
         super().__init__()
-        self.net = nn.Sequential(
+        self.net = nn.Sequential(   
             nn.Linear(config.n_embd, 4 * config.n_embd),
             nn.ReLU(),
             nn.Linear(4 * config.n_embd, config.n_embd),

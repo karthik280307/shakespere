@@ -1,50 +1,135 @@
-# Shakespeare Mini Language Model
+# 📜 Shakespeare Transformer
 
-This project is a small, educational implementation of a Shakespeare-inspired mini language model built in Python with PyTorch. The notebook in [myown.ipynb](myown.ipynb) trains a character-level transformer on a text corpus so it can learn patterns in Shakespeare-style language and generate new text.
+A character-level GPT Transformer built from scratch using **PyTorch** and deployed as an interactive web application with **Streamlit**.
 
-## What the project does
+The model is trained on the Tiny Shakespeare dataset (~1.1 million characters) and learns to generate stylized Elizabethan prose and dialogue conditioned on custom user prompts.
 
-- Loads a text file and analyzes its vocabulary
-- Converts text into integer token IDs
-- Builds training and validation datasets
-- Implements a compact transformer architecture with:
-  - token embeddings
-  - positional embeddings
-  - multi-head self-attention
-  - feed-forward layers
-  - a language modeling head
-- Trains the model and generates new text from learned patterns
+---
 
-## Technologies used
+## ✨ Features
 
-- Python
-- PyTorch
-- NumPy
+- **Character-Level Transformer Architecture**: Self-attention, multi-head attention, residual connections, layer normalization, and feed-forward networks based on Andrej Karpathy's nanoGPT design.
+- **Interactive Streamlit Web UI**: Elegant, Shakespearean-themed interface with custom styling and responsive typography.
+- **Dynamic Sampling Controls**:
+  - Configurable generation length (characters/tokens)
+  - Temperature control (for creative vs deterministic output)
+  - Optional Top-k probability filtering
+  - Random seed control for deterministic reproducibility
+- **Pre-set Famous Seed Prompts**: One-click selection of iconic quotes from *Hamlet*, *Romeo and Juliet*, *Julius Caesar*, *Macbeth*, and more.
+- **Performance & Real-Time Stats**: Displays generation time, output length, and throughput (characters per second).
+- **Export Options**: One-click download of generated text.
+- **Cached Model Inference**: Uses `st.cache_resource` for zero-overhead multi-turn text generation.
 
-## Setup
+---
 
-Install the required dependencies:
+## 🏛️ Model Architecture
+
+The Transformer is a decoder-only autoregressive language model designed with the following specifications:
+
+| Parameter | Value | Description |
+| :--- | :--- | :--- |
+| **Vocabulary Size** | 65 | Character-level unique characters |
+| **Context Window (Block Size)** | 32 | Maximum sequence length for attention |
+| **Embedding Dimension ($n_{embd}$)** | 64 | Latent token & positional embedding size |
+| **Attention Heads ($n_{head}$)** | 4 | Number of parallel self-attention heads |
+| **Transformer Layers ($n_{layer}$)** | 4 | Stack of Transformer blocks |
+| **Total Parameters** | ~209,729 | Learnable weights |
+| **Device Support** | CPU / CUDA | Runs seamlessly on standard CPU or GPU |
+
+---
+
+## 📁 Project Structure
+
+```
+shakesphere/
+├── app.py                  # Main Streamlit web application
+├── model.py                # Transformer model architecture & tokenizer
+├── train.py                # Training script for training checkpoint
+├── utils.py                # UI styling, prompts, and performance helpers
+├── demo_model.pkl          # Trained Transformer model checkpoint
+├── input.txt               # Tiny Shakespeare dataset
+├── build_gpt_andrej.ipynb  # Educational notebook (step-by-step GPT build)
+├── myown.ipynb             # Model prototyping and experiment notebook
+├── index.html              # Standalone web showcase
+├── pyproject.toml          # Project configuration & dependencies
+├── requirements.txt        # Standard pip requirements
+└── README.md               # Project documentation
+```
+
+---
+
+## 🚀 Getting Started
+
+### 1. Prerequisites
+
+- Python `>= 3.10` (Python 3.12 recommended)
+- `uv` (recommended) or standard `python3` / `pip`
+
+### 2. Environment Setup & Dependency Installation
+
+#### Option A: Using `uv` (Fast & Recommended)
 
 ```bash
-pip install torch numpy
+# Clone or navigate to the repository
+cd shakesphere
+
+# Create virtual environment and sync dependencies
+uv venv --python 3.12
+source .venv/bin/activate
+uv sync
 ```
 
-## Data
+#### Option B: Using standard `venv` and `pip`
 
-The notebook expects a text file to be available at the path specified in the notebook:
+```bash
+# Create virtual environment
+python3 -m venv .venv
+source .venv/bin/activate
 
-```python
-C:\Users\Hp\OneDrive\Desktop\myprog\ai\dataset\input.txt
+# Install required packages
+pip install -r requirements.txt
 ```
 
-If your dataset is stored elsewhere, update the file path in the notebook accordingly.
+---
 
-## How to run
+## 🏋️ Model Training (Optional)
 
-1. Open [myown.ipynb](myown.ipynb)
-2. Run the cells in order
-3. The training loop will print loss values and generate sample text
+A trained checkpoint is saved in `demo_model.pkl`. If you wish to retrain or experiment with custom hyperparameters:
 
-## Notes
+```bash
+python train.py
+```
 
-This is a learning-focused project that demonstrates how a tiny GPT-style model can be built from scratch in a compact, beginner-friendly way. It is intentionally small and inspired by Shakespeare, making it a fun introduction to transformer concepts and character-level text generation.
+Training runs for 3,000 iterations and takes under ~30 seconds on a standard CPU.
+
+---
+
+## 🖥️ Running the Streamlit Application
+
+Start the web application locally:
+
+```bash
+streamlit run app.py
+```
+
+Once started, open your web browser at:
+`http://localhost:8501`
+
+---
+
+## 💡 Example Usage
+
+1. **Enter a Prompt**: Type `To be, or not to be,` or choose one of the quick preset buttons.
+2. **Adjust Controls**:
+   - Set **Temperature** to `0.8` for balanced creativity.
+   - Set **Output Length** to `300` characters.
+   - (Optional) Enable **Top-k Sampling** (`k=15`) for tighter coherence.
+3. **Generate**: Click **✨ Generate**.
+4. **Save**: Click **📥 Download Text** to export your generated passage.
+
+---
+
+## 📜 License & Acknowledgments
+
+- Built using principles from Andrej Karpathy's *nanoGPT* and *Neural Networks: Zero to Hero* lecture series.
+- Dataset: *Tiny Shakespeare* corpus.
