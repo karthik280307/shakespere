@@ -1,10 +1,12 @@
 # 📜 Shakespeare Transformer
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://shakespere-karthik.streamlit.app/)
+
 A character-level GPT Transformer built from scratch using **PyTorch** and deployed as an interactive web application with **Streamlit**.
 
-The model is trained on the Tiny Shakespeare dataset (~1.1 million characters) and learns to generate stylized Elizabethan prose and dialogue conditioned on custom user prompts.
+🚀 **[Try the Live Web App Here!](https://shakespere-karthik.streamlit.app/)**
 
----
+The model is trained on the Tiny Shakespeare dataset (~1.1 million characters) and learns to generate stylized Elizabethan prose and dialogue conditioned on custom user prompts.
 
 ## ✨ Features
 
