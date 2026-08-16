@@ -44,19 +44,13 @@ The Transformer is a decoder-only autoregressive language model designed with th
 
 ```
 shakesphere/
-├── app.py                  # Main Streamlit web application
-├── model.py                # Transformer model architecture & tokenizer
-├── train.py                # Training script for training checkpoint
-├── utils.py                # UI styling, prompts, and performance helpers
-├── demo_model.pkl          # Trained Transformer model checkpoint
-├── input.txt               # Tiny Shakespeare dataset
-├── build_gpt_andrej.ipynb  # Educational notebook (step-by-step GPT build)
-├── myown.ipynb             # Model prototyping and experiment notebook
-├── index.html              # Standalone web showcase
-├── pyproject.toml          # Project configuration & dependencies
-├── requirements.txt        # Standard pip requirements
-└── README.md               # Project documentation
-```
+├── app.py            # Interactive Streamlit web application
+├── model.py          # GPT Transformer architecture, tokenizer, and checkpoint loaders
+├── train.py          # Data preparation, training loop, and model checkpointing
+├── utils.py          # Custom CSS, preset Shakespearean prompts, and metric computation
+├── demo_model.pkl    # Trained Transformer model weights and vocabulary mappings
+├── requirements.txt  # Project dependencies for local setup & Streamlit Cloud
+└── README.md         # Documentation and project setup guide
 
 ---
 
