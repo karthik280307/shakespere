@@ -1,2 +1,19 @@
 venv/
 build_gpt_andrej.ipynb
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Agents & tooling logs
+.agents/
+
+# Downloaded datasets
+input.txt
+
+# Package manager lockfiles/configs (optional, but keeps repo clean)
+uv.lock
+pyproject.toml
+
+# Miscellaneous
+index.html
+myown.ipynb
